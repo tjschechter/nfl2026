@@ -16,5 +16,7 @@ install.packages("pacman")
 ## package manager
 library(pacman)
 ## use package manager (pacman) to install, load all packages needed for this script
-p_load("tidyverse")
+## tidyverse (readr, magrittr, ggplot2, dplyr, etc), data.table (fast data manipulation)
+p_load(tidyverse,data.table)
 
+## read in data as data.table format (faster than tidyverse)
