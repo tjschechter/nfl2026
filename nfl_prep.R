@@ -2,8 +2,8 @@
 
 ## script for setting up Kaggle API for scraping data
 
-## install dev tools from CRAN
-install.packages(c("devtools"))
+## install dev tools from CRAN (comment out after first use)
+# install.packages(c("devtools"))
 
 
 ## install dev version of kaggler from CRAN
