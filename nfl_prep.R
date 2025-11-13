@@ -34,3 +34,16 @@ data_23_wk1 <- fread("data/train/input_2023_w01.csv")
 ## absolute_yardline_number; x (0 - 120); y (0 - 53.3); speed (yds/sec); 
 ## a (acceleration) (yds/sec^2); o (orientation); dir (direction); 
 ## num_frames_output; ball land x, ball land y
+
+## output data week 1 2023 - AFTER pass is thrown
+data_23_wk1_out <- fread("data/train/output_2023_w01.csv")
+
+## Data Descriptions
+
+## factor/nominal/categorical data
+## game id; play id; nfl id, frame id
+
+## numeric
+## x (0-120) {PREDICT}; y (0-53.3) {PREDICT}
+
+
