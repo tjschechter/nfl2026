@@ -5,11 +5,6 @@
 ## install dev tools from CRAN (comment out after first use)
 # install.packages(c("devtools"))
 
-
-## install dev version of kaggler from CRAN
-## install kaggler package from github
-devtools::install_github("koderkow/kaggler")
-
 ## install necessary packages
 install.packages("pacman")
 
