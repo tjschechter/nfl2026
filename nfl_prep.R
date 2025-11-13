@@ -46,4 +46,15 @@ data_23_wk1_out <- fread("data/train/output_2023_w01.csv")
 ## numeric
 ## x (0-120) {PREDICT}; y (0-53.3) {PREDICT}
 
+################################################################
 
+## Exploratory Data Analysis of the week 1 data from 2023 season
+
+## what variables can be used to join the data?
+## nfl_id = player id number, unique to player
+## game_id = unique game identifier
+## play_id = play identifier - NOT UNIQUE ACROSS GAMES
+
+## PLAYER TO PREDICT VARIABLE
+## boolean, either true or false
+## explore with both ONLY TRUE rows and ALL rows
