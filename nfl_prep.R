@@ -14,4 +14,4 @@ library(pacman)
 ## tidyverse (readr, magrittr, ggplot2, dplyr, etc), data.table (fast data manipulation)
 p_load(tidyverse,data.table)
 
-## read in data as data.table format (faster than tidyverse)
+## read in data as data.table format (faster than tidyverse
