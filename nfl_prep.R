@@ -58,3 +58,15 @@ data_23_wk1_out <- fread("data/train/output_2023_w01.csv")
 ## PLAYER TO PREDICT VARIABLE
 ## boolean, either true or false
 ## explore with both ONLY TRUE rows and ALL rows
+
+
+
+
+## INPUT Exploration
+
+## How many observations are true for "player_to_predict"?
+sum(data_23_wk1$player_to_predict == TRUE)
+## 76399 (209315 FALSE)
+
+## convert the necessary data to factors using lapply
+data_23_wk1[,c(1:6,8,12:14)] <- lapply(data_23_wk1[,c(1:6,8,12:14)], factor)
