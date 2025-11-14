@@ -113,3 +113,53 @@ jjet %>% filter(player_role == "Targeted Receiver") %>%
 ## Justin Jefferson seems to always be closer to the ball later in the play AFTER ball is thrown but
 ## BEFORE it lands. the color gradient displays time in play, the x axis his acceleration, y his distance from
 ## the ball's landing location
+
+##########################################################
+
+## Next player should be a different position (Tight End? Running back? Defensive Back?)
+
+## Tight End Kyle Pitts
+
+## Copy the code above and repeat it for Kyle Pitts
+kpitt <- data_23_wk1 %>% filter(player_name == "Kyle Pitts")
+
+## Less observations of Pitts in routes (1100 for JJ, 271 for KP)
+
+## looking through the data, grouping by play (play_id), what is his avg accel? (a)
+
+kpitt %>% group_by(play_id) %>%
+  summarise("Avg_accel_during_play" = mean(a)) %>%
+  print(n = 39)
+
+## Some plays averaging an acceleration of >3 yds/(s^2)!
+
+## create a metric for the difference in where jj is vs the ball at landing
+
+kpitt$difference_x <- kpitt[,`x` - `ball_land_x`]
+kpitt$difference_y <- kpitt[,`y` - `ball_land_y`]
+
+## calculate total distance from the ball landing spot in yards
+kpitt$distance <- kpitt[,sqrt(((`ball_land_x` - `x`)^2) + ((`ball_land_y` - `y`)^2))]
+
+## create a linear model to estimate the relationship between acceleration, distance from ball
+lm_kp <- lm(data = kpitt, distance ~ a)
+
+## create a scatter plot displaying the relationship
+kpitt %>% filter(player_role == "Targeted Receiver") %>% 
+  ggplot(aes(x = a, y = distance)) +
+  geom_point(aes(color = as.numeric(frame_id))) +
+  scale_color_gradient() +
+  theme_bw()
+
+## Less busy as a chart, we can more clearly see how he's performing in relation to his targets
+## On his few targets, pitts seems to struggle getting close to the ball as it comes to him
+## the top of the graph with light blue gradient shows he's not very close to the ball when he is targeted
+
+####################################
+
+## check the linear models for jefferson, pitts and compare
+
+summary(lm_jj)
+summary(lm_kp)
+
+## neither had acceleration as particularly significant in week 1 of 2023
