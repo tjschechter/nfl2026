@@ -70,3 +70,23 @@ sum(data_23_wk1$player_to_predict == TRUE)
 
 ## convert the necessary data to factors using lapply
 data_23_wk1[,c(1:6,8,12:14)] <- lapply(data_23_wk1[,c(1:6,8,12:14)], factor)
+
+
+## get a peek into the Ns of categorical, and quartiles of numeric vectors
+summary(data_23_wk1)
+
+## take a look at the first rows of data
+head(data_23_wk1)
+
+## filter down to one player
+## say... Justin Jefferson
+
+jjet <- data_23_wk1 %>% filter(player_name == "Justin Jefferson")
+
+## looking through the data, grouping by play (play_id), what is his avg accel? (a)
+
+jjet %>% group_by(play_id) %>%
+  summarise("Avg_accel_during_play" = mean(a)) %>%
+  print(n = 39)
+
+## Some plays averaging an acceleration of >3 yds/(s^2)!
