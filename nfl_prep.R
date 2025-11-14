@@ -163,3 +163,13 @@ summary(lm_jj)
 summary(lm_kp)
 
 ## neither had acceleration as particularly significant in week 1 of 2023
+## Intuitive - this makes sense... 
+## as you approach the ball's landing location, acceleration should change based on proximity to the ball
+
+###############################################
+
+## how does orientation/direction affect distance?
+
+## Create distance variable in the base input data.table object
+data_23_wk1$distance <- data_23_wk1[,sqrt(((`ball_land_x` - `x`)^2) + ((`ball_land_y` - `y`)^2))]
+
