@@ -90,3 +90,26 @@ jjet %>% group_by(play_id) %>%
   print(n = 39)
 
 ## Some plays averaging an acceleration of >3 yds/(s^2)!
+
+## create a metric for the difference in where jj is vs the ball at landing
+
+jjet$difference_x <- jjet[,`x` - `ball_land_x`]
+jjet$difference_y <- jjet[,`y` - `ball_land_y`]
+
+## calculate total distance from the ball landing spot in yards
+jjet$distance <- jjet[,sqrt(((`ball_land_x` - `x`)^2) + ((`ball_land_y` - `y`)^2))]
+
+## create a linear model to estimate the relationship between acceleration, distance from ball
+lm_jj <- lm(data = jjet, distance ~ a)
+
+## create a scatter plot displaying the relationship
+jjet %>% filter(player_role == "Targeted Receiver") %>% 
+  ggplot(aes(x = a, y = distance)) +
+  geom_point(aes(color = as.numeric(frame_id))) +
+  scale_color_gradient() +
+  theme_bw()
+
+## Not much of a linear relationship apparent in data, BUT
+## Justin Jefferson seems to always be closer to the ball later in the play AFTER ball is thrown but
+## BEFORE it lands. the color gradient displays time in play, the x axis his acceleration, y his distance from
+## the ball's landing location
