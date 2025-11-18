@@ -173,3 +173,11 @@ summary(lm_kp)
 ## Create distance variable in the base input data.table object
 data_23_wk1$distance <- data_23_wk1[,sqrt(((`ball_land_x` - `x`)^2) + ((`ball_land_y` - `y`)^2))]
 
+## plot speed vs acceleration
+
+data_23_wk1 %>% filter(player_role == "Targeted Receiver") %>%
+  ggplot(aes(x = s, y = a)) +
+  geom_point() +
+  geom_jitter()
+
+## far too much data to detect any pattern visually, even with jitter
