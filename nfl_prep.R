@@ -181,3 +181,29 @@ data_23_wk1 %>% filter(player_role == "Targeted Receiver") %>%
   geom_jitter()
 
 ## far too much data to detect any pattern visually, even with jitter
+
+
+
+###################
+
+## Configure a join that will get the test and training sets together by week
+
+## ensure compatible data types
+data_23_wk1_out$game_id <- as.factor(data_23_wk1_out$game_id)
+data_23_wk1_out$play_id <- as.factor(data_23_wk1_out$play_id)
+data_23_wk1_out$nfl_id <- as.factor(data_23_wk1_out$nfl_id)
+data_23_wk1_out$frame_id <- as.factor(data_23_wk1_out$frame_id)
+
+
+## CREATE THE JOIN
+data_23_wk1_f <- left_join(data_23_wk1, data_23_wk1_out,
+                           by = c('game_id', 'nfl_id', 'play_id', 'frame_id'))
+
+
+## If x.y and y.y are NA, filter out
+
+data_23_wk1_f <- data_23_wk1_f %>% filter(!is.na(`x.y`))
+
+
+## repeat for all data by week and stack
+
